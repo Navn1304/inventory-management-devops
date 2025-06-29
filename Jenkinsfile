@@ -23,7 +23,7 @@ pipeline {
         stage('Clone Ansible Repo') {
             steps {
                 dir('ansible') {
-                    git 'https://github.com/Navn1304/inventory-ansible.git'
+                    git url: 'https://github.com/Navn1304/inventory-ansible.git', branch: 'main'
                 }
             }
         }
