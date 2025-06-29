@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/Navn1304/inventory-management-devops.git'
-            }
-        }
-
         stage('Build with Maven') {
             steps {
                 sh 'mvn clean package'
@@ -32,3 +26,4 @@ pipeline {
         }
     }
 }
+
