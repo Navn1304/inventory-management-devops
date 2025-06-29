@@ -20,6 +20,18 @@ pipeline {
             }
         }
 
+        stage('Build & Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                    sh '''
+                        docker build -t $DOCKER_USER/inventory-app:latest .
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker push $DOCKER_USER/inventory-app:latest
+                    '''
+                }
+            }
+        }
+
         stage('Clone Ansible Repo') {
             steps {
                 dir('ansible') {
