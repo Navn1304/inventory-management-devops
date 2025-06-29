@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Project Repo') {
             steps {
-                git 'https://github.com/Navn1304/inventory-management-devops.git'
+                git branch: 'main', url: 'https://github.com/Navn1304/inventory-management-devops.git'
             }
         }
 
