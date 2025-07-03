@@ -50,7 +50,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Start Monitoring Stack') {
             steps {
                 dir('monitoring') {
