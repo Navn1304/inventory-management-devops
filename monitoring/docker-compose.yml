@@ -1,0 +1,30 @@
+version: '3'
+services:
+  graphite:
+    image: graphiteapp/graphite-statsd
+    ports:
+      - "8085:80"         # Graphite Web UI
+      - "2003-2004:2003-2004"
+      - "2023-2024:2023-2024"
+      - "8125:8125/udp"
+      - "8126:8126"
+    restart: always
+    volumes:
+      - graphite-data:/opt/graphite/storage
+      - graphite-logs:/opt/graphite/log
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3001:3000"     # Grafana UI
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    restart: always
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+  graphite-data:
+  graphite-logs:
+  grafana-data:
