@@ -50,5 +50,14 @@ pipeline {
                 }
             }
         }
+        
+        stage('Start Monitoring Stack') {
+            steps {
+                dir('monitoring') {
+                    sh 'docker-compose up -d'
+                }
+                sh 'sleep 10' // Let Graphite & Grafana initialize
+            }
+        }
     }
 }
